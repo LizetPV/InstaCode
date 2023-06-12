@@ -6,6 +6,8 @@ import { onNavigate } from '../router.js';
 import {userData} from '../store/userData.js';
 import fondoImage from '../imagenes/fondo-cel.png'
 import logoImage from '../imagenes/logo.png'
+import rayitaImage from '../imagenes/rayita2-05.png'
+import buttonGoogleImage from '../imagenes/buttonGoogle.png'
 
 export const welcome = () => {
   const div = document.createElement('div');
@@ -50,10 +52,10 @@ export const welcome = () => {
   fondo.src = fondoImage;
   fondo.alt = 'Fondo';
 
-  line.src = './imagenes/rayita2-05.png';
+  line.src = rayitaImage;
   line.alt = 'line';
 
-  buttonGoogle.src = './imagenes/buttonGoogle.png';
+  buttonGoogle.src = buttonGoogleImage;
   buttonGoogle.alt = 'buttonGoogle';
 
   buttonGetinto.addEventListener('click', () => {
