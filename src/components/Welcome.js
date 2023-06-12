@@ -3,7 +3,9 @@ import {
    loginWithEmailAndPassword,
 } from '../Firebase/authentication.js';
 import { onNavigate } from '../router.js';
-import {userData} from '../store/userData.js'
+import {userData} from '../store/userData.js';
+import fondoImage from '../imagenes/fondo-cel.png'
+import logoImage from '../imagenes/logo.png'
 
 export const welcome = () => {
   const div = document.createElement('div');
@@ -42,10 +44,10 @@ export const welcome = () => {
   buttonGetinto.textContent = 'LOGIN';
   buttonCreate.textContent = 'CREATE ACCOUNT';
 
-  logo.src = './imagenes/logo.png';
+  logo.src = logoImage;
   logo.alt = 'Logo';
 
-  fondo.src = './imagenes/fondo-cel.png';
+  fondo.src = fondoImage;
   fondo.alt = 'Fondo';
 
   line.src = './imagenes/rayita2-05.png';
