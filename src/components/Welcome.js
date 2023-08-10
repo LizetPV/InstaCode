@@ -1,16 +1,16 @@
 import {
-   loginGoogle,
-   loginWithEmailAndPassword,
-} from '../Firebase/authentication.js';
-import { onNavigate } from '../router.js';
-import {userData} from '../store/userData.js';
-import fondoImage from '../imagenes/fondo-cel.png'
-import logoImage from '../imagenes/logo.png'
-import rayitaImage from '../imagenes/rayita2-05.png'
-import buttonGoogleImage from '../imagenes/buttonGoogle.png'
+  loginGoogle,
+  loginWithEmailAndPassword,
+} from '../Firebase/authentication';
+import { onNavigate } from '../router';
+import { userData } from '../store/userData';
+import fondoImage from '../imagenes/fondo-cel.png';
+import logoImage from '../imagenes/logo.png';
+import lineImage from '../imagenes/rayita2-05.png';
+import buttonGoogleImage from '../imagenes/buttonGoogle.png';
 
 export const welcome = () => {
-  const div = document.createElement('div');
+  const section = document.createElement('section');
   const logo = document.createElement('img');
   const fondo = document.createElement('img');
   const title = document.createElement('h2');
@@ -20,22 +20,25 @@ export const welcome = () => {
   const buttonCreate = document.createElement('button');
   const inputPassword = document.createElement('input');
   const inputUsername = document.createElement('input');
-  
+
+  logo.src = logoImage;
+  fondo.src = fondoImage;
+  line.src = lineImage;
+  buttonGoogle.src = buttonGoogleImage;
 
   inputUsername.type = 'email';
   inputUsername.required = 'true';
   inputPassword.type = 'password';
-  inputPassword.required= 'true';
+  inputPassword.required = 'true';
 
   inputUsername.placeholder = 'e-mail';
   inputPassword.placeholder = 'password';
-  
+
   logo.id = 'logo';
   fondo.id = 'fondo';
-  div.id = 'section';
+  section.id = 'emailAndPassword';
   inputPassword.id = 'password';
   inputUsername.id = 'username';
-  
 
   title.className = 'title';
   buttonGetinto.className = 'buttonGetinto';
@@ -46,17 +49,10 @@ export const welcome = () => {
   buttonGetinto.textContent = 'LOGIN';
   buttonCreate.textContent = 'CREATE ACCOUNT';
 
-  logo.src = logoImage;
-  logo.alt = 'Logo';
-
-  fondo.src = fondoImage;
-  fondo.alt = 'Fondo';
-
-  line.src = rayitaImage;
-  line.alt = 'line';
-
-  buttonGoogle.src = buttonGoogleImage;
   buttonGoogle.alt = 'buttonGoogle';
+  logo.alt = 'Logo';
+  fondo.alt = 'Fondo';
+  line.alt = 'line';
 
   buttonGetinto.addEventListener('click', () => {
     if (inputUsername.value === '' || inputPassword.value === '') {
@@ -75,14 +71,13 @@ export const welcome = () => {
   });
   buttonGoogle.addEventListener('click', () => {
     loginGoogle().then((userCredential) => {
+      console.log(userCredential);
       userData.userName = userCredential.user.email;
-
       onNavigate('/wall');
     });
   });
-  
 
-  div.append(
+  section.append(
     title,
     logo,
     fondo,
@@ -94,5 +89,5 @@ export const welcome = () => {
     buttonCreate,
   );
 
-  return div;
+  return section;
 };

@@ -1,11 +1,8 @@
+import { loginGoogle } from './Firebase/authentication';
+import { ROUTES } from './lib/routes';
 
-/* import { app, db } from './Firebase/firebase.js'; */
-const LOCAL_ROUTES = {};
-
-export const onNavigate= (pathname, updateHistory = true) => {
-
-  // If the path is not found, redirect to the home page
-  const path = typeof LOCAL_ROUTES[pathname] !== 'function' ? pathname : '/';
+export const onNavigate = (pathname, updateHistory = true) => {
+  const path = typeof ROUTES[pathname] !== 'function' ? pathname : '/';
 
   // Update the history
   if (updateHistory) {
@@ -15,26 +12,23 @@ export const onNavigate= (pathname, updateHistory = true) => {
   // Clear the root section and render the new component
   const rootSection = document.getElementById('root');
   rootSection.innerHTML = '';
-  rootSection.append(LOCAL_ROUTES[pathname]());
-
+  rootSection.append(ROUTES[pathname]());
 };
 
 // Initialize the router with the routes
 export const initRouter = (routes) => {
-
-  // Add routes to LOCAL_ROUTES
+  // Add routes to ROUTES
   Object.keys(routes).reduce((currentRoutes, pathname) => {
     currentRoutes[pathname] = routes[pathname];
     return currentRoutes;
-  }, LOCAL_ROUTES);
+  }, ROUTES);
 
-  // Add event listener to handle back/forward button
-  window.addEventListener('popstate', (e) => {
+  window.addEventListener('popstate', () => {
     onNavigate(window.location.pathname, false);
   });
-  
+
   // Add event listener to handle page load
-  window.addEventListener('load', () =>{
+  window.addEventListener('load', () => {
     onNavigate(window.location.pathname, false);
   });
-}
+};
