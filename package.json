@@ -18,7 +18,7 @@
     "test": "jest --coverage --env=jsdom",
     "dev": "vite dev src",
     "start": "npm run dev -s",
-    "build": "vite build",
+    "build": "webpack --config webpack.config.js",
     "preview": "vite preview",
     "clear-cache": "rm -rf node_modules/.vite"
   },
@@ -28,6 +28,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^25.3.0",
+    "file-loader": "^6.2.0",
     "htmlhint": "^1.0.0",
     "jest": "^27.0.1",
     "regenerator-runtime": "^0.13.1",
